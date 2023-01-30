@@ -1,5 +1,6 @@
 import { authModalState } from '@/src/atoms/autmModalAtom';
 import { auth } from '@/src/firebase/clientApp';
+import { FIREBASE_ERRORS } from '@/src/firebase/errors';
 import { Button, Flex, Input, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -74,11 +75,12 @@ const SignUp: React.FC = () => {
         bg="grey.50"
         onChange={onChange}
       />
-      {error && (
-        <Text textAlign="center" color="red" fontSize="10pt">
-          {error}
-        </Text>
-      )}
+      {error ||
+        (userError && (
+          <Text textAlign="center" color="red" fontSize="10pt">
+            {error || FIREBASE_ERRORS[userError.message as keyof typeof FIREBASE_ERRORS]}
+          </Text>
+        ))}
       <Button type="submit" width="100%" height="36px" mt={2} mb={2} isLoading={loading}>
         Sign Up
       </Button>
