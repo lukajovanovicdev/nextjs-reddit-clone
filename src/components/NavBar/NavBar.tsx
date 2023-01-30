@@ -1,8 +1,11 @@
+import { auth } from '@/src/firebase/clientApp';
 import { Flex, Image } from '@chakra-ui/react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import RightContent from './RightContent/RightContent';
 import SearchInput from './SearchInput';
 
 const NavBar = () => {
+  const [user, loading, error] = useAuthState(auth);
   return (
     <Flex bg="white" height="44px" padding="6px 12px">
       <Flex alignItems="center">
@@ -16,7 +19,7 @@ const NavBar = () => {
       </Flex>
       {/* <Directory /> */}
       <SearchInput />
-      <RightContent />
+      <RightContent user={user} />
     </Flex>
   );
 };
