@@ -1,6 +1,20 @@
+import PageContent from '@/src/components/Layout/PageContent';
+import NewPostForm from '@/src/components/Posts/NewPostForm';
+import { Box, Text } from '@chakra-ui/react';
+
 import React from 'react';
 
 const SubmitPostPage: React.FC = () => {
-  return <div>Submit page</div>;
+  return (
+    <PageContent>
+      <>
+        <Box padding="14px 0" borderBottom="1px solid" borderColor="white">
+          <Text>Create a new post</Text>
+        </Box>
+        <NewPostForm />
+      </>
+      <>{/* <About /> */}</>
+    </PageContent>
+  );
 };
 export default SubmitPostPage;
